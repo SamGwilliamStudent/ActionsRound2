@@ -2,6 +2,8 @@
 //Comment
 //Another Comment
 
+import java.util.UUID;
+
 class Calculator {
 
     Calculator(){
@@ -40,8 +42,24 @@ class Calculator {
     .
     etc
      */
-    int fibonacciNumberFinder(int n){
-        return 0;
+    int fibonacciNumberFinder(int n) {
+        if (n <= 0) {
+            return 0;  // By convention, Fibonacci sequence starts with 0 for n = 0
+        } else if (n == 1) {
+            return 1;  // First Fibonacci number is 1 for n = 1
+        } else {
+            int prev = 0;
+            int current = 1;
+            int next;
+
+            for (int i = 2; i <= n; i++) {
+                next = prev + current;
+                prev = current;
+                current = next;
+            }
+
+            return current;
+        }
     }
 
 
@@ -52,8 +70,20 @@ class Calculator {
     if int a = 10 then this method returns: 1010
     if int a = 16 then this method returns: 10000
      */
-    String intToBinaryNumber(int number){
-        return null;
+    String intToBinaryNumber(int number) {
+        if (number == 0) {
+            return "0";
+        }
+
+        StringBuilder binary = new StringBuilder();
+
+        while (number > 0) {
+            int remainder = number % 2;
+            binary.insert(0, remainder);  // Prepend the remainder to the binary string
+            number = number / 2;
+        }
+
+        return binary.toString();
     }
 
     /*
@@ -64,8 +94,14 @@ class Calculator {
 
     if you run this function twice with the same String input, it must return 2 unique String IDs
      */
-    String createUniqueID(String n){
-        return null;
+    String createUniqueID(String n) {
+        // Generate a random UUID (Universally Unique Identifier)
+        String randomID = UUID.randomUUID().toString();
+
+        // Append the original string 'n' to the random UUID
+        String uniqueID = n + randomID;
+
+        return uniqueID;
     }
 
 
